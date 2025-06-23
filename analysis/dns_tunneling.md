@@ -18,16 +18,17 @@ Detect potential DNS tunneling activity used for data exfiltration by inspecting
 
 ## 🧪 Wireshark Filters Used
 
-```wireshark
-dns.qry.type == 16
-dns.qry.name contains "xyz"
-ip.src == x.x.x.x  # Replace with actual source IP
+```wireshark 
+- dns
 
 
+## Bash Command Used
+-  echo 'VTBaU1EyVXhaSFprVjNocldETnNkbVJXT1cxaU0wb3pXVmhLYTFneU1XeFlNMUp2WVZoT1ptTklTbXhrU0ZJMVdETkNjMXBYUm5wYQpXREJMQ2c9PQo=' | base64 -d 
+-  echo 'VTBaU1EyVXhaSFprVjNocldETnNkbVJXT1cxaU0wb3pXVmhLYTFneU1XeFlNMUp2WVZoT1ptTklTbXhrU0ZJMVdETkNjMXBYUm5wYQpXREJMQ2c9PQo=' | base64 -d | base64 -d | base64 -d
 ## ⚠️ Indicators of Compromise (IOCs)
 - Domain: `tunnel.attacker-domain.xyz`
-- Record Type: TXT (dns.qry.type == 16)
+- Record Type: TXT (dns)
 - Pattern: Long subdomains with base64/hex strings
 - Frequency: Repeated every ~2 seconds
-- Source IP: 192.168.1.100 (example — replace with actual)
+- Source IP: 192.168.10.5 
 
