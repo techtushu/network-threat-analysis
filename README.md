@@ -50,15 +50,16 @@ pcap-attack-analysis/
 
 ---
 
-## 📊 Analyzed Attacks
+##  ~J Analyzed Attacks
 
 | Attack Type        | Description                             | MITRE Technique | Status |
 |--------------------|-----------------------------------------|------------------|--------|
 | DNS Tunneling      | Covert exfiltration via DNS TXT records | T1071.004        | ✅ Done |
-| Nmap Xmas Scan     | Stealth scanning via unusual TCP flags  | T1046            | 🔄 Coming Soon |
-| ARP Spoofing       | MITM via forged ARP replies             | T1557.002        | 🔄 Coming Soon |
-| ICMP Smurf Attack  | DoS using broadcast ICMP echo requests  | T1499            | 🔄 Coming Soon |
-| TCP Hijacking      | Hijacking TCP sessions                  | T1020            | 🔄 Coming Soon |
+| Nmap Xmas Scan     | Stealth scanning via unusual TCP flags  | T1046            |  ~D Coming Soon |
+| ARP Spoofing       | MITM via forged ARP replies             | T1557.002        |  ~D Coming Soon |
+| ICMP Smurf Attack  | DoS using broadcast ICMP echo requests  | T1499            |  ~D Coming Soon |
+| TCP Hijacking      | Hijacking TCP sessions                  | T1020            |  ~D Coming Soon |
+| XSS (Simple)       | JavaScript injected via HTTP requests   | T1059.007        | ✅ Done |
 
 🔍 Full analysis available in the [`analysis/`](./analysis) folder.
 
@@ -72,6 +73,22 @@ pcap-attack-analysis/
 - Screenshot: ![View](./images/dns_tunneling_packet_view.png)
 
 > Malicious DNS TXT queries were used to encode and exfiltrate data such as `admin:password`, decoded from base64 strings embedded in subdomains.
+
+---
+
+## ✅ Example: XSS (Simple)
+
+- 📁 PCAP: [`XSS_Simple.pcapng`](./pcaps/XSS_Simple.pcapng)
+- 📝 Report: [`xss_simple.md`](./analysis/xss_simple.md)
+- 📄 IOCs: [`xss_simple_iocs.txt`](./threats/xss_simple_iocs.txt)
+- 🖼️ Screenshot: ![XSS GET Request](./images/xss_get_request.png)
+
+### 🧠 Summary
+
+This analysis reveals a **reflected XSS attack** where an attacker injected JavaScript into a vulnerable input (`q=<script>alert(1)</script>`).  
+The script was executed by unsuspecting users' browsers and **sent cookies/tokens to a suspicious internal server**.
+
+This showcases how XSS can be used for **credential theft** or **session hijacking** in real-world attacks.
 
 ---
 
