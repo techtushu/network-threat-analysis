@@ -1,0 +1,13 @@
+# ARP Spoofing - IOCs
+
+Attacker MAC Address: aa:bb:cc:dd:ee:ff
+Victim IP Address: 192.168.1.10
+Spoofed IP Address (Gateway): 192.168.1.1
+
+Wireshark Filter:
+    arp
+    arp.opcode == 108:00:27:53:0c:ba
+    eth.src == 08:00:27:53:0c:ba
+
+MITRE Technique:
+    T1557.002 - ARP Spoofing
